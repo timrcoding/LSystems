@@ -31,13 +31,18 @@ public class Rules : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI lineSliderText;
 
-
+    //SLIDER FOR RANDOM ANGLE
+    [SerializeField]
+    private Slider randomAngleSlider;
+    [SerializeField]
+    private TextMeshProUGUI randAngleSliderText;
 
     public string activeAxiom;
     public string activeXRule;
     public string activeFRule;
     public float activeAngle;
     public float activeLineLength;
+    public float activeRandomAngle;
 
     [SerializeField]
     private TMP_InputField axiomInput;
@@ -58,6 +63,7 @@ public class Rules : MonoBehaviour
         addToList();
         setAngleSliderText();
         setLineSliderText();
+        setRandomAngleText();
         setActiveRules();
         ruleSelected = axiom.Count;
         incrementRule();
@@ -90,6 +96,8 @@ public class Rules : MonoBehaviour
         ruleSelectedText.text = "R: " +  (ruleSelected+1).ToString();
         slider.value = activeAngle;
         lineSlider.value = activeLineLength;
+        activeRandomAngle = 0;
+        randomAngleSlider.value = activeRandomAngle;
         setAngleSliderText();
         activeLineLength = lineLengths[ruleSelected];
         setLineSliderText();
@@ -124,6 +132,15 @@ public class Rules : MonoBehaviour
         setLineSliderText();
     }
 
+    public void setRandomAngleValue()
+    {
+        activeRandomAngle = randomAngleSlider.value;
+        LSystem.instance.setRules();
+        LSystem.instance.destroyAll();
+        LSystem.instance.createSentence();
+        setRandomAngleText();
+    }
+
     void setAngleSliderText()
     {
         float fl = (float)Mathf.Round(activeAngle * 100f) / 100f;
@@ -134,6 +151,12 @@ public class Rules : MonoBehaviour
     {
         float fl = (float)Mathf.Round(activeLineLength * 100f) / 100f;
         lineSliderText.text = "Length: " + fl.ToString();
+    }
+
+    void setRandomAngleText()
+    {
+        float fl = (float)Mathf.Round(activeRandomAngle * 100f) / 100f;
+        randAngleSliderText.text = "Random Angle: " + fl.ToString();
     }
 
     public void initaliseInputFields()

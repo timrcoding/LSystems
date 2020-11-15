@@ -129,13 +129,15 @@ public class LSystem : MonoBehaviour
             }
             else if (c == '+')
             {
+                float a = angle + Random.Range(-Rules.instance.activeRandomAngle, Rules.instance.activeRandomAngle);
                 //TURNS TRANSFORM
-                transform.Rotate(Vector3.forward * angle);
+                transform.Rotate(Vector3.forward * a);
             }
             else if (c == '-')
             {
+                float a = angle + Random.Range(-Rules.instance.activeRandomAngle, Rules.instance.activeRandomAngle);
                 //TURNS TRANSFORM
-                transform.Rotate(Vector3.back * angle);
+                transform.Rotate(Vector3.back * a);
             }
             else if (c == '[')
             {
