@@ -42,7 +42,7 @@ public class LSystem : MonoBehaviour
     void Start()
     {
         instance = this;
-        //setRules();
+        setRules();
 
     }
 

@@ -50,6 +50,8 @@ public class Rules : MonoBehaviour
         setLineSliderText();
         setActiveRules();
         activeLineLength = 0.3f;
+        ruleSelected = axiom.Count;
+        incrementRule();
     }
 
     // Update is called once per frame
@@ -82,10 +84,11 @@ public class Rules : MonoBehaviour
         }
         setActiveRules();
         activeLineLength = lineLengths[ruleSelected];
-        ruleSelectedText.text = "R: " +  ruleSelected.ToString();
+        ruleSelectedText.text = "R: " +  (ruleSelected+1).ToString();
         slider.value = activeAngle;
+        lineSlider.value = activeLineLength;
         setAngleSliderText();
-        activeLineLength = 0.3f;
+        activeLineLength = lineLengths[ruleSelected];
         setLineSliderText();
         initaliseInputFields();
     }
