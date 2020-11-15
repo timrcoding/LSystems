@@ -6,23 +6,32 @@ using TMPro;
 
 public class Rules : MonoBehaviour
 {
+    //USE OF PUBLIC STATIC INSTANCE FOR EASY ACCESS
     public static Rules instance;
+
+    //DEFINES WHICH RULE GETS PASSED TO THE SENTENCE BUILDER
     public int ruleSelected;
     [SerializeField]
     private TextMeshProUGUI ruleSelectedText;
 
+    //RULES ARE ALL CONTAINED IN TEXTDOCUMENT
     public TextAsset rulesText;
+    //LIST MADE OUT STREAMREADER OF TEXT DOCUMENT
     public List<string> rules;
 
+    //SLIDER FOR ANGLES
     [SerializeField]
     private Slider slider;
     [SerializeField]
     private TextMeshProUGUI angleSliderText;
 
+    //SLIDER FOR LINES
     [SerializeField]
     private Slider lineSlider;
     [SerializeField]
     private TextMeshProUGUI lineSliderText;
+
+
 
     public string activeAxiom;
     public string activeXRule;
@@ -37,6 +46,7 @@ public class Rules : MonoBehaviour
     [SerializeField]
     private TMP_InputField fRuleInput;
 
+    //L SYSTEM COMPONENTS ACTIVE AS ACCORDING TO ACTIVE RULE
     public List<string> axiom;
     public List<string> xRules;
     public List<string> fRules;
@@ -49,17 +59,10 @@ public class Rules : MonoBehaviour
         setAngleSliderText();
         setLineSliderText();
         setActiveRules();
-        activeLineLength = 0.3f;
         ruleSelected = axiom.Count;
         incrementRule();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //READS TEXT DOCUMENT AND COMPILES TO LISTS
     void addToList()
     {
         int count = 0;
@@ -74,7 +77,7 @@ public class Rules : MonoBehaviour
             count++;
         }
     }
-
+    //INCREMENTS RULE SELECTION, SETTING SLIDER VALUES AND TEXT AS APPROPRIATE
     public void incrementRule()
     {
         ruleSelected++;
@@ -92,7 +95,7 @@ public class Rules : MonoBehaviour
         setLineSliderText();
         initaliseInputFields();
     }
-
+    //MAKES A PARTICULAR REFERENCE OF VALUES THE ACTIVE VALUES
     void setActiveRules()
     {
         activeAxiom = axiom[ruleSelected];
@@ -111,7 +114,7 @@ public class Rules : MonoBehaviour
     }
 
 
-
+    //LINE SLIDER
     public void setLineSliderValue()
     {
         activeLineLength = lineSlider.value;
